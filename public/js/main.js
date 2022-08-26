@@ -10,15 +10,16 @@ Array.from(thumbText).forEach((element)=>{
 })
 
 async function deleteThought(){
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
+    const sThought = this.parentNode.childNodes[1].innerText
+    const bSignoff = this.parentNode.childNodes[3].innerText
+    // const tLikes = Number(this.parentNode.childNodes[7].innerText)
     try{
         const response = await fetch('deleteThought', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'stageNameS': sName,
-              'birthNameS': bName
+              'thoughtS': sThought,
+              'signoffS': bSignoff
             })
           })
         const data = await response.json()
@@ -31,16 +32,16 @@ async function deleteThought(){
 }
 
 async function addLike(){
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
-    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    const sThought = this.parentNode.childNodes[1].innerText
+    const bSignoff = this.parentNode.childNodes[3].innerText
+    const tLikes = Number(this.parentNode.childNodes[7].innerText)
     try{
         const response = await fetch('addOneLike', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'stageNameS': sName,
-              'birthNameS': bName,
+              'thoughtS': sThought,
+              'signoffS': bSignoff,
               'likesS': tLikes
             })
           })

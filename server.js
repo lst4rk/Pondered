@@ -9,7 +9,8 @@ let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'thought'
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect(dbConnectionStr,
+    { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
@@ -30,9 +31,9 @@ app.get('/',(request, response)=>{
 })
 
 app.post('/addThought', (request, response) => {
-    db.collection('thinkingthings').insertOne({thought: request.body.thought,
-    signoff: request.body.signoff, likes: 0})
+    db.collection('thinkingthings').insertOne({thought: request.body.thought, signoff: request.body.signoff, likes: 0})
     .then(result => {
+        console.log(request.body);
         console.log('thought acknowledged')
         response.redirect('/')
     })
@@ -40,7 +41,7 @@ app.post('/addThought', (request, response) => {
 })
 
 app.put('/addOneLike', (request, response) => {
-    db.collection('thinkingthings').updateOne({thought: request.body.stageNameS, signoff: request.body.birthNameS,likes: request.body.likesS},{
+    db.collection('thinkingthings').updateOne({thought: request.body.thoughtS, signoff: request.body.signoffS, likes: request.body.likesS},{
         $set: {
             likes:request.body.likesS + 1
           }
@@ -49,24 +50,25 @@ app.put('/addOneLike', (request, response) => {
         upsert: false
     })
     .then(result => {
-        console.log('emphathized')
-        response.json('empathized')
+        console.log(request.body);
+        console.log(`emphathized`);
+        response.json('empathized');
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error));
 
 })
 
 app.delete('/deleteThought', (request, response) => {
-    db.collection('thinkingthings').deleteOne({thought: request.body.stageNameS})
+    db.collection('thinkingthings').deleteOne({thought: request.body.thoughtS})
     .then(result => {
-        console.log('thought taken back')
-        response.json('thought taken back')
-        response.redirect('/')
+        console.log(request.body);
+        console.log('thought taken back');
+        response.json('thought taken back');
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error));
 
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`);
 })
