@@ -49,14 +49,31 @@
 
   li {
       text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       border: .5px dotted black;
       padding: 12px;
       position: relative;
-      flex-grow: 1;
-      max-width: 50%;
-      min-width: 15%;
-      /* width: 30%; */
+      flex: auto;
+      min-width: 5%;
       height: 200px;
+  }
+
+        @media screen and (max-width: 768px) {
+            li {
+                width: 100%;
+                height: auto;
+            }
+
+            .signoff {
+                padding-bottom: 5px;
+            }
+
+        }
+
+  li p {
+      width: 100%;
   }
 
   body {
@@ -103,6 +120,17 @@
     border: 1px dotted black;
   }
 
+    @media screen and (max-width: 1025px) {
+        form {
+            width: 100%; 
+        }
+
+        .submit {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
   li:last-child {
       flex-grow: 10;
   }
@@ -114,15 +142,34 @@
   }
 
   .signoff {
+      text-align: right;
       padding-top: 10px;
       font-size: 1.4rem;
       font-style: italic;
+      /* position: absolute;
+      bottom: 40px;   
+      right: 12px; */
   }
 
-  .interact {
+  .thought span {
       position: absolute;
-      right: 5px;
-      bottom: 5px;
+      bottom: 12px;
+  }
+
+  .thought .fa-trash {
+        right: 12px;
+  }
+
+  .thought .fa-arrow-down {
+        right: 32px;
+  }
+
+  .thought .fa-arrow-up {
+        right: 49px;
+  }
+
+  .thought .likes {
+        right: 71px;
   }
 
   textarea {

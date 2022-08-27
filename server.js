@@ -58,6 +58,25 @@ app.put('/addOneLike', (request, response) => {
 
 })
 
+app.put('/removeOneLike', (request, response) => {
+    db.collection('thinkingthings').updateOne({thought: request.body.thoughtS, signoff: request.body.signoffS, likes: request.body.likesS},{
+        $set: {
+            likes:request.body.likesS - 1
+          }
+    },{
+        sort: {_id: -1},
+        upsert: false
+    })
+    .then(result => {
+        console.log(request.body);
+        console.log(`emphathized`);
+        response.json('empathized');
+    })
+    .catch(error => console.error(error));
+
+})
+
+
 app.delete('/deleteThought', (request, response) => {
     db.collection('thinkingthings').deleteOne({thought: request.body.thoughtS})
     .then(result => {
