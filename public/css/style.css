@@ -177,8 +177,14 @@
   textarea {
       height: 150px;
       resize: none;
-      
   }
+
+        @media screen and (max-width: 768px) {
+
+            textarea {
+                height: 100px;
+            }
+        }
 
   textarea + textarea {
       height: 50px;
