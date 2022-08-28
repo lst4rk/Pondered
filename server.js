@@ -69,8 +69,8 @@ app.put('/removeOneLike', (request, response) => {
     })
     .then(result => {
         console.log(request.body);
-        console.log(`emphathized`);
-        response.json('empathized');
+        console.log(`dislike`);
+        response.json('dislike');
     })
     .catch(error => console.error(error));
 
