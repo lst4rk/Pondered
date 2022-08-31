@@ -1,7 +1,7 @@
 # Pondered
 Pondered is a full-stack web application that allows users can anonymously share inspirational quotations, personal thoughts, and whatever incites a feeling within them. Users have the ability to engage with each post as well.
 
-![screenshot of Pondered] (/public/css/images/screenshot.png);
+![screenshot of Pondered] (./public/css/images/screenshot.png);
 https://pondered.herokuapp.com/
 
 ## How It's Made:
